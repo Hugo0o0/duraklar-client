@@ -1,6 +1,6 @@
-import { StationPageData } from "./StationPageData";
+import { StationData } from "./StationData";
 
-export interface LinePageData {
+export interface LineData {
   attributes: {
     name: string;
     code: string;
@@ -13,10 +13,10 @@ export interface LinePageData {
       };
     };
     first_route?: {
-      data: StationPageData[];
+      data: StationData[];
     };
     second_route?: {
-      data: StationPageData[];
+      data: StationData[];
     };
   };
 }

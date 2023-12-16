@@ -7,11 +7,14 @@ import {
   Stack,
   TabPanel,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 
 const SearchStations = ({ stations }: { stations: SearchStation[] | null }) => {
+  const bg = useColorModeValue("gray.100", "gray.700");
+
   return (
     <>
       {stations &&
@@ -20,9 +23,9 @@ const SearchStations = ({ stations }: { stations: SearchStation[] | null }) => {
             <HStack
               padding={"1rem"}
               {...(i !== stations.length && {
-                borderTop: "1px solid #eee",
+                borderTop: "1px solid gray.700",
               })}
-              _hover={{ bg: "gray.100" }}
+              _hover={{ bg }}
             >
               <Stack spacing={3}>
                 <Heading justifySelf={"start"} size={"sm"}>

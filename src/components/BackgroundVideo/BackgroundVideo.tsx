@@ -3,7 +3,7 @@
 const BackgroundVideo = () => {
   return (
     <video
-      src="video2.mp4"
+      src="video3.mp4"
       loop
       autoPlay
       muted

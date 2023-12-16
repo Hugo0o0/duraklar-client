@@ -1,6 +1,6 @@
 "use client";
 import { useSearch } from "@/hooks/useSearch";
-import { Input, Stack } from "@chakra-ui/react";
+import { Input, Stack, useColorModeValue } from "@chakra-ui/react";
 import { useState } from "react";
 import SearchTabs from "./SearchTabs/SearchTabs";
 
@@ -8,6 +8,7 @@ const Search = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
   const { data } = useSearch(search);
+  const bg = useColorModeValue("white", "gray.800");
 
   return (
     <Stack
@@ -23,7 +24,7 @@ const Search = () => {
         variant="fixed-background"
         placeholder="Ara..."
         type="search"
-        colorScheme="gray"
+        bg={bg}
         borderRadius={{ base: isFocused ? "0" : "0.375rem", md: "0.375rem" }}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -32,7 +33,7 @@ const Search = () => {
       <Stack
         borderRadius={{ base: isFocused ? "0" : "0.375rem", md: "0.375rem" }}
         height={"100%"}
-        bg={"white"}
+        bg={bg}
         overflowY={"scroll"}
         transition={"all 0.3s"}
       >

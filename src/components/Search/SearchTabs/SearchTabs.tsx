@@ -2,7 +2,14 @@ import SearchLines from "@/components/Search/SearchLines/SearchLines";
 import SearchStations from "@/components/Search/SearchStations/SearchStations";
 import { SearchLine } from "@/interfaces/SearchLine";
 import { SearchStation } from "@/interfaces/SearchStation";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 
 const SearchTabs = ({
@@ -12,8 +19,9 @@ const SearchTabs = ({
   lines: SearchLine[];
   stations: SearchStation[];
 }) => {
+  const colorScheme = useColorModeValue("blackAlpha", "whiteAlpha");
   return (
-    <Tabs colorScheme="gray" isFitted variant={"soft-rounded"}>
+    <Tabs colorScheme={colorScheme} isFitted variant={"soft-rounded"}>
       <TabList margin={"1rem 1rem 0 1rem"}>
         <Tab>Duraklar</Tab>
 
