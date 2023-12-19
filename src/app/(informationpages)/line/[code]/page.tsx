@@ -16,7 +16,7 @@ const page = async (props: Props) => {
     params: {
       "filters[code][$eq]": props.params.code,
       "populate[0]": "thumbnail",
-      "populate[1]": "first_route.lines.thumbnail",
+      "populate[1]": "first_route.transfers.thumbnail",
     },
   });
 

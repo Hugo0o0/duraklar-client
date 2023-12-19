@@ -1,21 +1,23 @@
 "use client";
 
+import Image from "next/image";
+
 const BackgroundVideo = () => {
   return (
-    <video
-      src="video3.mp4"
-      loop
-      autoPlay
-      muted
+    <Image
+      width={100}
+      height={100}
+      alt="Picture of the Istanbul"
+      src="/bg-dark.jpg"
       style={{
-        objectFit: "cover",
-        objectPosition: "center",
-        width: "100%",
-        height: "100%",
-        position: "absolute",
+        position: "fixed",
+        zIndex: -1,
         top: 0,
         left: 0,
-        zIndex: -2,
+        width: "100%",
+        objectFit: "cover",
+        height: "100vh",
+        objectPosition: "center",
       }}
     />
   );

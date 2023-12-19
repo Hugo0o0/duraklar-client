@@ -1,7 +1,7 @@
 "use client";
 import { useSearch } from "@/hooks/useSearch";
 import { Input, Stack, useColorModeValue } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchTabs from "./SearchTabs/SearchTabs";
 
 const Search = () => {

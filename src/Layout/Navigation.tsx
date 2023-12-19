@@ -13,34 +13,15 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { IoMdArrowRoundBack, IoMdSunny } from "react-icons/io";
-import { FcSearch } from "react-icons/fc";
-import { CiMenuFries } from "react-icons/ci";
-import { FaMoon } from "react-icons/fa";
-
-interface ColorMode {
-  [key: string]: {
-    title: string;
-    icon: React.ReactNode;
-  };
-}
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { CiMenuBurger } from "react-icons/ci";
+import ColorThemeSwitcher from "@/components/ColorThemeSwitcher/ColorThemeSwitcher";
 
 const Navigation = () => {
   const theme = useColorMode();
   const router = useRouter();
 
   const bg = useColorModeValue("gray.100", "gray.700");
-
-  const colorMode: ColorMode = {
-    light: {
-      title: "Koyu Mod",
-      icon: <FaMoon />,
-    },
-    dark: {
-      title: "Açık Mod",
-      icon: <IoMdSunny />,
-    },
-  };
 
   return (
     <HStack
@@ -63,18 +44,15 @@ const Navigation = () => {
       />
 
       <Menu closeOnSelect={false}>
-        <MenuButton display={"flex"} justifyContent={"center"} as={IconButton}>
-          <CiMenuFries size={30} />
+        <MenuButton display={"flex"} as={IconButton}>
+          <CiMenuBurger size={30} />
         </MenuButton>
         <MenuList>
           <MenuItem href={"/"} as={Link}>
             Anasayfa
           </MenuItem>
-          <MenuItem onClick={theme.toggleColorMode}>
-            <HStack>
-              {colorMode[theme.colorMode].icon}
-              <Text>{colorMode[theme.colorMode].title}</Text>
-            </HStack>
+          <MenuItem>
+            <ColorThemeSwitcher />
           </MenuItem>
         </MenuList>
       </Menu>

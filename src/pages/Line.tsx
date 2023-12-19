@@ -15,9 +15,18 @@ import Link from "next/link";
 
 const Line = ({ data }: { data: LineData }) => {
   return (
-    <Stack align={"center"} padding={5} minHeight={"100vh"}>
+    <Stack
+      position={"relative"}
+      align={"center"}
+      padding={5}
+      minHeight={"100vh"}
+    >
       <Card mt={"5rem"} w={{ base: "auto", md: "50%" }}>
-        <CardHeader>
+        <CardHeader
+          top={-2}
+          position={{ base: "static", md: "sticky" }}
+          zIndex={{ base: "auto", md: "sticky" }}
+        >
           <HStack divider={<StackDivider />}>
             <Avatar
               name={data.attributes.type}
@@ -43,7 +52,7 @@ const Line = ({ data }: { data: LineData }) => {
                   divider={<StackDivider />}
                   key={Math.random() * i}
                 >
-                  {station.attributes.lines?.data.map(
+                  {station.attributes.transfers?.data.map(
                     (line, i) =>
                       line.attributes.code !== data.attributes.code && (
                         <Avatar
