@@ -8,6 +8,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
@@ -20,10 +21,18 @@ const SearchTabs = ({
   stations: SearchStation[];
 }) => {
   const colorScheme = useColorModeValue("blackAlpha", "whiteAlpha");
+
+  const tabDefaultIndex = stations?.length > 0 ? 0 : 1;
+
   return (
-    <Tabs colorScheme={colorScheme} isFitted variant={"soft-rounded"}>
+    <Tabs
+      defaultIndex={tabDefaultIndex}
+      colorScheme={colorScheme}
+      isFitted
+      variant={"soft-rounded"}
+    >
       <TabList margin={"1rem 1rem 0 1rem"}>
-        <Tab>Duraklar</Tab>
+        <Tab isDisabled={Boolean(tabDefaultIndex)}>Duraklar</Tab>
 
         <Tab>Hatlar</Tab>
       </TabList>
