@@ -15,14 +15,15 @@ import {
 import React from "react";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import Link from "next/link";
+import { nanoid } from "nanoid";
 
-const Station = ({ data: { data } }: { data: StationData }) => {
+const Station = ({ data }: { data: StationData }) => {
   return (
     <Stack spacing={5} p={3} minH={"100vh"}>
       <Tabs mt={"5rem"} colorScheme="gray" variant={"soft-rounded"}>
         <TabList>
           <Tab>Hatlar</Tab>
-          {data[0].attributes.transfers?.data.length !== 0 && (
+          {data.attributes.transfers?.data.length !== 0 && (
             <Tab>Aktarma Hatları</Tab>
           )}
         </TabList>
@@ -33,17 +34,18 @@ const Station = ({ data: { data } }: { data: StationData }) => {
               justify={{ base: "center", md: "initial" }}
               flexWrap={"wrap"}
             >
-              {data[0].attributes.lines?.data.map((line) => (
+              {data.attributes.lines?.data.map((line) => (
                 <Card
                   w={"20rem"}
                   height={"12rem"}
                   align={"center"}
                   size={"sm"}
+                  key={nanoid()}
                   variant={"filled"}
                 >
                   <CardHeader>
                     <Avatar
-                      src={`${process.env.NEXT_PUBLIC_SERVER_URL}${line.attributes.thumbnail.data.attributes.url}`}
+                      src={line.attributes.thumbnail.data.attributes.url}
                       name="Tramvay"
                     />
                   </CardHeader>
@@ -65,17 +67,18 @@ const Station = ({ data: { data } }: { data: StationData }) => {
               justify={{ base: "center", md: "initial" }}
               flexWrap={"wrap"}
             >
-              {data[0].attributes.transfers?.data.map((line) => (
+              {data.attributes.transfers?.data.map((line) => (
                 <Card
                   w={"20rem"}
                   height={"12rem"}
                   align={"center"}
                   size={"sm"}
                   variant={"filled"}
+                  key={nanoid()}
                 >
                   <CardHeader>
                     <Avatar
-                      src={`${process.env.NEXT_PUBLIC_SERVER_URL}${line.attributes.thumbnail.data.attributes.url}`}
+                      src={line.attributes.thumbnail.data.attributes.url}
                       name="Tramvay"
                     />
                   </CardHeader>

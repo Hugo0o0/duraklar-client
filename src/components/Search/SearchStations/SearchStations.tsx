@@ -9,6 +9,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { nanoid } from "nanoid";
 import Link from "next/link";
 import React from "react";
 
@@ -18,8 +19,8 @@ const SearchStations = ({ stations }: { stations: SearchStation[] | null }) => {
   return (
     <>
       {stations &&
-        stations.map((station: any, i: number) => (
-          <Link key={Math.random() * i} href={`station/${station.slug}`}>
+        stations.map((station, i: number) => (
+          <Link key={nanoid()} href={`station/${station.slug}`}>
             <HStack
               padding={"1rem"}
               {...(i !== stations.length && {
@@ -33,12 +34,12 @@ const SearchStations = ({ stations }: { stations: SearchStation[] | null }) => {
                 </Heading>
 
                 <Stack spacing={3}>
-                  {station.lines.map((line: any, i: number) => (
-                    <HStack key={Math.random() * i}>
+                  {station.lines.map((line) => (
+                    <HStack key={nanoid()}>
                       <Avatar
                         size={"sm"}
                         name={line.type}
-                        src={`${process.env.NEXT_PUBLIC_SERVER_URL}${line.thumbnail.url}`}
+                        src={line.thumbnail.url}
                       />
                       <Text>{line.name}</Text>
                     </HStack>

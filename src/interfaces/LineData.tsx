@@ -1,6 +1,7 @@
 import { StationData } from "./StationData";
 
 export interface LineData {
+  id: number;
   attributes: {
     name: string;
     code: string;

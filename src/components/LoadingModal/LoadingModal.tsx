@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal, ModalContent, ModalOverlay, Spinner } from "@chakra-ui/react";
+import { Modal, ModalOverlay, Spinner } from "@chakra-ui/react";
 
 const LoadingModal = () => {
   return (

@@ -6,6 +6,7 @@ import {
   TabPanel,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { nanoid } from "nanoid";
 import Link from "next/link";
 import React from "react";
 
@@ -15,15 +16,11 @@ const SearchLines = ({ lines }: { lines: SearchLine[] }) => {
   return (
     <>
       {lines &&
-        lines.map((line: any, i: number) => (
-          <Link key={Math.random() * i} href={`line/${line.code}`}>
+        lines.map((line: any) => (
+          <Link key={nanoid()} href={`line/${line.code}`}>
             <HStack padding={"1rem"} _hover={{ bg }}>
               <HStack alignItems={"center"} spacing={2}>
-                <Avatar
-                  size={"sm"}
-                  name={line.type}
-                  src={`${process.env.NEXT_PUBLIC_SERVER_URL}${line.thumbnail.url}`}
-                />
+                <Avatar size={"sm"} name={line.type} src={line.thumbnail.url} />
                 <Heading size={"sm"}>{line.name}</Heading>
               </HStack>
             </HStack>

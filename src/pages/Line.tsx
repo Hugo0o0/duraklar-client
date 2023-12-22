@@ -1,5 +1,6 @@
 "use client";
 
+import { useScroll } from "@/hooks/useScroll";
 import { LineData } from "@/interfaces/LineData";
 import {
   Avatar,
@@ -11,17 +12,30 @@ import {
   Stack,
   StackDivider,
 } from "@chakra-ui/react";
+import { nanoid } from "nanoid";
 import Link from "next/link";
 
 const Line = ({ data }: { data: LineData }) => {
+  const scroll = useScroll();
+
   return (
     <Stack
-      position={"relative"}
+      position={{
+        base: scroll === 0 ? "relative" : "absolute",
+        md: "relative",
+      }}
       align={"center"}
-      padding={5}
+      padding={{ base: scroll === 0 ? 5 : 0, md: 5 }}
       minHeight={"100vh"}
+      zIndex={{ base: scroll === 0 ? "auto" : 999, md: "auto" }}
+      width={{ base: scroll === 0 ? "auto" : "100%", md: "auto" }}
+      transition={"all 0.2s ease"}
     >
-      <Card mt={"5rem"} w={{ base: "auto", md: "50%" }}>
+      <Card
+        transition={"all 0.2s ease"}
+        mt={"5rem"}
+        w={{ base: scroll === 0 ? "auto" : "100%", md: "50%" }}
+      >
         <CardHeader
           top={-2}
           position={{ base: "static", md: "sticky" }}
@@ -30,7 +44,7 @@ const Line = ({ data }: { data: LineData }) => {
           <HStack divider={<StackDivider />}>
             <Avatar
               name={data.attributes.type}
-              src={`${process.env.NEXT_PUBLIC_SERVER_URL}${data.attributes.thumbnail.data.attributes.url}`}
+              src={data.attributes.thumbnail.data.attributes.url}
             />
             <Heading size="md">{data.attributes.name}</Heading>
           </HStack>
@@ -40,25 +54,21 @@ const Line = ({ data }: { data: LineData }) => {
           <Stack divider={<StackDivider />} spacing="4">
             {data.attributes.first_route?.data.map((station, i) => (
               <Stack
-                key={Math.random() * i}
+                key={nanoid()}
                 as={Link}
                 href={`/station/${station.attributes.slug}`}
                 spacing={2}
                 height={"100%"}
               >
                 <Heading size="sm">{station.attributes.name}</Heading>
-                <HStack
-                  display={"flex"}
-                  divider={<StackDivider />}
-                  key={Math.random() * i}
-                >
+                <HStack display={"flex"} divider={<StackDivider />}>
                   {station.attributes.transfers?.data.map(
                     (line, i) =>
                       line.attributes.code !== data.attributes.code && (
                         <Avatar
                           size={"xs"}
-                          key={Math.random() * i}
-                          src={`${process.env.NEXT_PUBLIC_SERVER_URL}${line.attributes.thumbnail.data.attributes.url}`}
+                          key={nanoid()}
+                          src={line.attributes.thumbnail.data.attributes.url}
                         />
                       )
                   )}
