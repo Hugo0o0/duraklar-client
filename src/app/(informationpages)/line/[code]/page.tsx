@@ -1,6 +1,6 @@
 import { instance } from "@/api/axios";
 import { LineData } from "@/interfaces/LineData";
-import Line from "@/pages/Line";
+import Line from "@/components/pages/Line";
 import { AxiosResponse } from "axios";
 import { notFound } from "next/navigation";
 

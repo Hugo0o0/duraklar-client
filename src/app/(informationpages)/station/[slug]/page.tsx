@@ -1,6 +1,6 @@
 import { instance } from "@/api/axios";
 import { StationData } from "@/interfaces/StationData";
-import Station from "@/pages/Station";
+import Station from "@/components/pages/Station";
 import { AxiosResponse } from "axios";
 import { notFound } from "next/navigation";
 import React from "react";
